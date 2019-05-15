@@ -1,0 +1,40 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 引入properties配置文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<!-- 要是有多个配置文件，只需在这里继续添加即可 -->
+				<value>classpath:properties/redis-config.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 自动扫描且只扫描@Service -->
+	<context:component-scan
+		base-package="cn.dyaoming.**.services" use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+	
+	<!-- 自动扫描且只扫描@Service -->
+	<context:component-scan
+		base-package="cn.dyaoming" use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Component" />
+	</context:component-scan>
+
+	<!-- 导入redis配置 -->
+	<import resource="classpath:spring/spring-redis.xml" />
+
+	<!-- 导入cache配置 -->
+	<import resource="classpath:spring/spring-cache.xml" />
+
+</beans>
