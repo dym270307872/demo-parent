@@ -1,7 +1,7 @@
 此子项目主要用于演示cn:dyaoming.common:common-cache包的缓存部分使用。
 
 
-具体操作流程可以参考csdn相关文章：
+具体操作流程可以参考csdn相关文章：https://blog.csdn.net/dym383140314/article/details/90230230
 
 
 本项目以普通springmvc项目为基础框架，由于偏重是cache使用，所有基础框架为涉及数据库操作，以同等效果的随机数代替查询逻辑，查询条件一致的情况下，多次查询返还结果一致视为获取缓存。
