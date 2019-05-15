@@ -1,10 +1,4 @@
 package cn.dyaoming.demo.dao;
-/*
- * @(#)RedisTemplateImp.java 创建于2017-02-12
- *
- * Copyright (c) 2017-2019 by Zhkj.
- *
- */
 
 
 import java.util.*;
@@ -20,31 +14,22 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 
-/**
- * 类名称：RedisTemplateImp
- * <p/>
- * 类描述： 一个通过Spring RedisTemplate 处理数据缓存的基础接口 实现类。
- * <p/>
- * 创建时间：2017-02-12
- * <p/>
- * 创建人： DYM
- * <p/>
- * 修改人：无
- * <p/>
- * 修改时间：无
- * <p/>
- * 修改备注：无
- * <p/>
- * 版本：V1.0
- */
 // @Component("cacheDao") TODO为了便于理解，此处单独配置到spring文件中，使用自动注解效果一致
+/**
+ * <p>
+ * 使用redis的实现类
+ * </p>
+ * 
+ * @author DYAOMING
+ * @since 2019-05-15
+ * @version V1.0
+ */
 public class RedisTemplateImp implements CacheInterface {
 
-	private static final Logger	logger	= LogManager.getLogger(RedisTemplateImp.class);
+	private static final Logger	LOGGER	= LogManager.getLogger(RedisTemplateImp.class);
 
 	@Autowired
 	private RedisTemplate		redisTemplate;
@@ -63,25 +48,9 @@ public class RedisTemplateImp implements CacheInterface {
 
 
 
-	public RedisTemplateImp() {
-
-	}
-
-
-
 	/**
 	 * 功能描述：判断是否存在键值。
-	 * <p/>
-	 * 创建时间：2017-02-12
-	 * <p/>
-	 * 创建人： DYM
-	 * <p/>
-	 * 修改人：无
-	 * <p/>
-	 * 修改时间：无
-	 * <p/>
-	 * 修改备注：无
-	 *
+	 * 
 	 * @param key String类型 键
 	 * @return boolean类型 返回结果
 	 */
@@ -103,7 +72,7 @@ public class RedisTemplateImp implements CacheInterface {
 			}
 
 		} catch(Exception e) {
-			logger.error("异常：exists()方法出现异常，异常详细信息：" + e.getMessage() + "。");
+			LOGGER.error("异常：exists()方法出现异常，异常详细信息：" + e.getMessage() + "。");
 			throw new AppDaoException("判断缓存内容是否存在异常！", e);
 		}
 
@@ -114,17 +83,7 @@ public class RedisTemplateImp implements CacheInterface {
 
 	/**
 	 * 功能描述：设置缓存对象类型内容。
-	 * <p/>
-	 * 创建时间：2017-02-12
-	 * <p/>
-	 * 创建人： DYM
-	 * <p/>
-	 * 修改人：无
-	 * <p/>
-	 * 修改时间：无
-	 * <p/>
-	 * 修改备注：无
-	 *
+	 * 
 	 * @param key String类型 键
 	 * @param value Object类型 内容
 	 * @return boolean类型 返回结果
@@ -138,16 +97,6 @@ public class RedisTemplateImp implements CacheInterface {
 
 	/**
 	 * 功能描述：设置缓存对象类型内容。
-	 * <p/>
-	 * 创建时间：2017-02-12
-	 * <p/>
-	 * 创建人： DYM
-	 * <p/>
-	 * 修改人：无
-	 * <p/>
-	 * 修改时间：无
-	 * <p/>
-	 * 修改备注：无
 	 *
 	 * @param key String类型 键
 	 * @param value Object类型 内容
@@ -203,7 +152,7 @@ public class RedisTemplateImp implements CacheInterface {
 				});
 			}
 		} catch(Exception e) {
-			logger.error("异常：setCacheObjectData()方法出现异常，异常详细信息：" + e.getMessage() + "。");
+			LOGGER.error("异常：setCacheObjectData()方法出现异常，异常详细信息：" + e.getMessage() + "。");
 			throw new AppDaoException("缓存对象类型内容出现异常！", e);
 		}
 
@@ -214,17 +163,7 @@ public class RedisTemplateImp implements CacheInterface {
 
 	/**
 	 * 功能描述：删除缓存内容。
-	 * <p/>
-	 * 创建时间：2017-02-12
-	 * <p/>
-	 * 创建人： DYM
-	 * <p/>
-	 * 修改人：无
-	 * <p/>
-	 * 修改时间：无
-	 * <p/>
-	 * 修改备注：无
-	 *
+	 * 
 	 * @param key String类型 键
 	 * @return boolean类型 返回结果
 	 */
@@ -246,7 +185,7 @@ public class RedisTemplateImp implements CacheInterface {
 				rv = true;
 			}
 		} catch(Exception e) {
-			logger.error("异常：deleteCacheData()方法出现异常，异常详细信息：" + e.getMessage() + "。");
+			LOGGER.error("异常：deleteCacheData()方法出现异常，异常详细信息：" + e.getMessage() + "。");
 			throw new AppDaoException("删除缓存内容出现异常！", e);
 		}
 
@@ -257,17 +196,7 @@ public class RedisTemplateImp implements CacheInterface {
 
 	/**
 	 * 功能描述：获取缓存内容。
-	 * <p/>
-	 * 创建时间：2017-02-12
-	 * <p/>
-	 * 创建人： DYM
-	 * <p/>
-	 * 修改人：无
-	 * <p/>
-	 * 修改时间：无
-	 * <p/>
-	 * 修改备注：无
-	 *
+	 * 
 	 * @param key String类型 键
 	 * @return Object类型 返回结果
 	 */
@@ -283,7 +212,9 @@ public class RedisTemplateImp implements CacheInterface {
 					@Override
 					public Object doInRedis(RedisConnection connection) throws DataAccessException {
 						byte[] value = connection.get(finalKey);
-						if (value == null) { return null; }
+						if (value == null){
+							return null; 
+						}
 						byte[] head = new byte[DEFALUTHEAD.length];
 						System.arraycopy(value, 0, head, 0, DEFALUTHEAD.length);
 						if (Arrays.equals(head, DEFALUTHEAD)) {
@@ -300,7 +231,7 @@ public class RedisTemplateImp implements CacheInterface {
 				rv = object;
 			}
 		} catch(Exception e) {
-			logger.error("异常：getCacheData()方法出现异常，异常详细信息：" + e.getMessage() + "。");
+			LOGGER.error("异常：getCacheData()方法出现异常，异常详细信息：" + e.getMessage() + "。");
 			throw new AppDaoException("获取缓存内容出现异常！", e);
 		}
 
@@ -311,17 +242,7 @@ public class RedisTemplateImp implements CacheInterface {
 
 	/**
 	 * 功能描述：获取缓存内容。
-	 * <p/>
-	 * 创建时间：2017-02-12
-	 * <p/>
-	 * 创建人： DYM
-	 * <p/>
-	 * 修改人：无
-	 * <p/>
-	 * 修改时间：无
-	 * <p/>
-	 * 修改备注：无
-	 *
+	 * 
 	 * @param key String类型 键
 	 * @param type Class<T>类型 内容类型
 	 * @return T类型 返回结果
@@ -343,7 +264,9 @@ public class RedisTemplateImp implements CacheInterface {
 				public Object doInRedis(RedisConnection connection) throws DataAccessException {
 					byte[] key = (finalKey).getBytes();
 					byte[] value = connection.get(key);
-					if (value == null) { return null; }
+					if (value == null){
+						return null; 
+						}
 					return SerializeUtil.unSerialize(value);
 				}
 			});
@@ -359,18 +282,7 @@ public class RedisTemplateImp implements CacheInterface {
 
 	/**
 	 * 描述：清空缓存
-	 * <p/>
-	 * 创建时间：2017-03-23
-	 * <p/>
-	 * 创建人： 董耀明
-	 * <p/>
-	 * 修改人：无
-	 * <p/>
-	 * 修改时间：无
-	 * <p/>
-	 * 修改备注：无
-	 * <p/>
-	 * 版本：V1.0
+	 * 
 	 */
 	@Override
 	public void clear() throws AppDaoException {

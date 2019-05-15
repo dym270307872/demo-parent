@@ -24,7 +24,7 @@
 			expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 	
-	<!-- 自动扫描且只扫描@Service -->
+	<!-- 自动扫描且只扫描@Component -->
 	<context:component-scan
 		base-package="cn.dyaoming" use-default-filters="false">
 		<context:include-filter type="annotation"
