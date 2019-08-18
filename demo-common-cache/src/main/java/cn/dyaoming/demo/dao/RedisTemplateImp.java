@@ -1,6 +1,7 @@
 package cn.dyaoming.demo.dao;
 
 
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import cn.dyaoming.cache.interfaces.CacheInterface;
@@ -14,6 +15,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.SerializationUtils;
 import org.springframework.util.StringUtils;
 
 
@@ -212,9 +214,7 @@ public class RedisTemplateImp implements CacheInterface {
 					@Override
 					public Object doInRedis(RedisConnection connection) throws DataAccessException {
 						byte[] value = connection.get(finalKey);
-						if (value == null){
-							return null; 
-						}
+						if (value == null) { return null; }
 						byte[] head = new byte[DEFALUTHEAD.length];
 						System.arraycopy(value, 0, head, 0, DEFALUTHEAD.length);
 						if (Arrays.equals(head, DEFALUTHEAD)) {
@@ -264,9 +264,7 @@ public class RedisTemplateImp implements CacheInterface {
 				public Object doInRedis(RedisConnection connection) throws DataAccessException {
 					byte[] key = (finalKey).getBytes();
 					byte[] value = connection.get(key);
-					if (value == null){
-						return null; 
-						}
+					if (value == null) { return null; }
 					return SerializeUtil.unSerialize(value);
 				}
 			});
@@ -282,11 +280,77 @@ public class RedisTemplateImp implements CacheInterface {
 
 	/**
 	 * 描述：清空缓存
-	 * 
 	 */
 	@Override
 	public void clear() throws AppDaoException {
 		redisTemplate.discard();
+	}
+
+
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<String> getKeys(String pattern) throws AppDaoException {
+		Set<String> rv = new HashSet<String>();
+
+		try {
+			if (!StringUtils.isEmpty(pattern)) {
+				final byte[] finalKey = pattern.toString().getBytes("utf-8");
+
+				rv = (Set<String>) redisTemplate.execute(new RedisCallback<Set<String>>(){
+					@Override
+					public Set<String> doInRedis(RedisConnection connection)
+							throws DataAccessException {
+						Set<String> rawKeys = new HashSet<String>();
+
+						connection.keys(finalKey).stream().forEach(f -> {
+							try {
+								rawKeys.add(new String(f, "utf-8"));
+							} catch(UnsupportedEncodingException e) {
+								// TODO Auto-generated catch block
+								// e.printStackTrace();
+							}
+						});
+						return rawKeys;
+					}
+				});
+			}
+		} catch(Exception e) {
+			LOGGER.error("异常：deleteCacheData()方法出现异常，异常详细信息：" + e.getMessage() + "。");
+			throw new AppDaoException("删除缓存内容出现异常！", e);
+		}
+
+		return rv;
+	}
+
+
+
+	@Override
+	public boolean deleteRegexCacheData(String pattern) throws AppDaoException {
+		boolean rv = false;
+
+		try {
+			if (!StringUtils.isEmpty(pattern)) {
+				final byte[] finalKey = pattern.toString().getBytes("utf-8");
+				redisTemplate.execute(new RedisCallback<Long>(){
+					@Override
+					public Long doInRedis(RedisConnection connection)
+							throws DataAccessException {
+						connection.keys(finalKey).stream().forEach(f -> {
+							connection.del(f);
+						});
+						return 0L;
+					}
+				});
+
+				rv = true;
+			}
+		} catch(Exception e) {
+			LOGGER.error("异常：deleteCacheData()方法出现异常，异常详细信息：" + e.getMessage() + "。");
+			throw new AppDaoException("删除缓存内容出现异常！", e);
+		}
+
+		return rv;
 	}
 
 }
