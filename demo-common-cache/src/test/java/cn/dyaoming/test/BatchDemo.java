@@ -6,17 +6,27 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.dyaoming.cache.interfaces.CacheBaseInterface;
 import cn.dyaoming.cache.interfaces.CacheBatchInterface;
+import cn.dyaoming.cache.interfaces.CacheInterface;
 
 
 public class BatchDemo extends BaseJunit {
 
+	/*@Autowired
+	private CacheBaseInterface redisBase2Dao;
+
 	@Autowired
 	private CacheBatchInterface cacheBatchDao;
+	
+	@Autowired
+	private CacheInterface cacheDao;*/
 
+	
+	@Autowired
+	private CacheBaseInterface cachebaseDao;
 
-
-	@Test
+	/*@Test
 	public void demo1() {
 
 		// 从左边插入一个数组
@@ -31,16 +41,16 @@ public class BatchDemo extends BaseJunit {
 		cacheBatchDao.setList("product:list", books2);
 		List<String> resultList2 = cacheBatchDao.getList("product:list");
 		System.out.println(resultList2);
-	}
+	}*/
 
-	/*
-	 * @Test
-	 * public void demo2() {
-	 * //从左边插入一个数组
-	 * String[] books = new String[] {"java编程思想", "springboot从入门到精通"};
-	 * redisTemplate.opsForList().leftPushAll("book:list", books);
-	 * }
-	 * @Test
+	
+	  @Test
+	  public void demo2() {
+	  //从左边插入一个数组
+		  System.out.println(cachebaseDao.setCacheObjectData("hello2","hello2"));
+//		  System.out.println(redisBase2Dao.getCacheData("hello"));
+	  }
+	 /** @Test
 	 * public void demo3() {
 	 * //从左边插入一个集合
 	 * List<String> list = new ArrayList<String>();

@@ -16,6 +16,6 @@ public class CacheTestDemo extends BaseJunit {
 
 	@Test
 	public void run() {
-		System.out.println("随机数：" + demoService.defaultService(100));
+		System.out.println("随机数：" + demoService.publicService(100));
 	}
 }
