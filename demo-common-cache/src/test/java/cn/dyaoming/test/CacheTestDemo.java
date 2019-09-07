@@ -16,6 +16,21 @@ public class CacheTestDemo extends BaseJunit {
 
 	@Test
 	public void run() {
-		System.out.println("随机数：" + demoService.publicService(100));
+		System.out.println(demoService.businessService(100));
+		System.out.println(demoService.businessService(100));
+		System.out.println(demoService.businessService(100));
+		System.out.println(demoService.businessService(100));
+		System.out.println(demoService.businessService(100));
+		System.out.println(demoService.businessService(100));
+		System.out.println(demoService.businessService(1000));
+		System.out.println(demoService.businessService(1000));
+		System.out.println(demoService.businessService(1000));
+		System.out.println(demoService.businessService(1000));
+		System.out.println(demoService.businessService(1200));
+		System.out.println(demoService.businessService(1200));
+		demoService.chear(1200);
 	}
+	
+	
+	
 }
