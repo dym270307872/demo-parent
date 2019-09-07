@@ -78,6 +78,13 @@
     
     
 	<!-- spring RedisBaseDcoImp 配置 -->
+	<bean id="cacheBatchDao" class="cn.dyaoming.cache.dao.RedisBatchImp">
+		<property name="redisTemplate">
+			<ref bean="redisTemplate" />
+		</property>
+	</bean>
+	
+	
 	<bean id="cacheDao" class="cn.dyaoming.demo.dao.RedisTemplateImp">
 		<property name="redisTemplate">
 			<ref bean="redisTemplate" />

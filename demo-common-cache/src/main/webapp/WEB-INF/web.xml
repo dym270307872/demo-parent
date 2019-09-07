@@ -46,4 +46,10 @@
 		<servlet-name>springMvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+
+	<!-- 加载Log4J 配置文件  -->
+	<listener>
+		<listener-class>cn.dyaoming.listeners.Log4j2ConfigListener</listener-class>
+	</listener>
 </web-app>

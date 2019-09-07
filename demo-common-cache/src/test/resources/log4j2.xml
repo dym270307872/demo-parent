@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status="OFF"，可以去掉，它的含义为是否记录log4j2本身的event信息，默认是OFF -->
+<configuration status="OFF" monitorInterval="1800">
+
+	<!-- 定义下面的引用名 -->
+	<Properties>		
+		<!--默认控制台日志配置 -->
+		<Property name="output_log_level">DEBUG</Property>
+		<Property name="console_pattern">%-5level %d{HH:mm:ss} %-20l - %msg%xEx%n</Property>
+	</Properties>
+
+	<!--先定义所有的Appenders -->
+	<Appenders>
+		<!--这个输出控制台的配置 -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
+			<ThresholdFilter level="DEBUG" onMatch="ACCEPT"
+				onMismatch="DENY" />
+			<!--这个都知道是输出日志的格式 -->
+			<PatternLayout pattern="${console_pattern}" />
+		</Console>
+	</Appenders>
+
+	<!--然后定义Loggers，只有定义了Loggers并引入的Appender，Appender才会生效 -->
+	<Loggers>
+		<!-- 3rdparty Loggers -->
+		<logger name="org.springframework.core" level="error"></logger>
+		<logger name="org.springframework.beans" level="error"></logger>
+		<logger name="org.springframework.context" level="error"></logger>
+		<logger name="org.springframework.web" level="error"></logger>
+		<logger name="org.jboss.netty" level="error"></logger>
+		<logger name="org.apache.http" level="error"></logger>
+		<!--建立一个默认的Root的logger，需要在Root的level中指定输出的级别， -->
+		<Root level="${output_log_level}">
+			<Appender-ref ref="Console" />
+		</Root>
+	</Loggers>
+
+</configuration>

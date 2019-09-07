@@ -1,30 +1,32 @@
 package cn.dyaoming.test;
 
-import org.junit.Test;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.alibaba.fastjson.JSON;
-
-import cn.dyaoming.cache.interfaces.CacheInterface;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:config/spring.xml")
 public class BaseJunit {
-	
-	@Autowired
-	private CacheInterface cacheDao;
-	
-	@Test
-	public void min() {
-		System.out.println("测试类");
-		
-		System.out.println(JSON.toJSONString(cacheDao.getKeys("cache:systemInfo:*11")));
-		
-//		System.out.println(JSON.toJSONString(cacheDao.deleteRegexCacheData("cache:systemInfo:system*")));
-//		System.out.println(JSON.toJSONString(cacheDao.getKeys("cache:systemInfo:system*")));
-		
+
+	protected static final Logger LOGGER = LogManager.getLogger(BaseJunit.class);
+
+
+
+	@Before
+	public void before() {
+		LOGGER.debug("单元测试运行开始");
+	}
+
+
+
+	@After
+	public void after() {
+		LOGGER.debug("单元测试运行结束");
 	}
 }
