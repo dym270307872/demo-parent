@@ -46,5 +46,6 @@
 		<module>demo-sf</module>
 		<module>demo-common-cache</module>
 		<module>demo-common-redis</module>
+		<module>demo-configuration</module>
 	</modules>
 </project>
