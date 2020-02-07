@@ -28,7 +28,7 @@ public class DemoService {
 	 * @param num 随机范围
 	 * @return 返还值
 	 */
-	@Cacheable("default")
+	@Cacheable("default#90")
 	public String defaultService(int num) {
 		return "默认缓存方法返回随机值:" + new Random().nextInt(num);
 	}
@@ -88,7 +88,7 @@ public class DemoService {
 	 * @param num 随机范围
 	 * @return 返还值
 	 */
-	@CacheEvict(value = "businessInfo", key = "'*['+#num+']'")
+	@CacheEvict(value = "businessInfo", key = "'*('+#num+')'")
 	public void chear(int num) {
 
 	}

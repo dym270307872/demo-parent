@@ -7,8 +7,6 @@ import cn.dyaoming.cache.interfaces.CacheBaseInterface;
 import cn.dyaoming.errors.AppDaoException;
 import cn.dyaoming.utils.AesUtil;
 import cn.dyaoming.utils.SerializeUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
@@ -27,8 +25,6 @@ import org.springframework.util.StringUtils;
  * @version V1.0
  */
 public class RedisBaseImp implements CacheBaseInterface {
-
-	private static final Logger	LOGGER	= LogManager.getLogger(RedisBaseImp.class);
 
 	@Autowired
 	private RedisTemplate		redisTemplate;
@@ -71,7 +67,7 @@ public class RedisBaseImp implements CacheBaseInterface {
 			}
 
 		} catch(Exception e) {
-			LOGGER.error("异常：exists()方法出现异常，异常详细信息：" + e.getMessage() + "。");
+//			LOGGER.error("异常：exists()方法出现异常，异常详细信息：" + e.getMessage() + "。");
 			throw new AppDaoException("判断缓存内容是否存在异常！", e);
 		}
 
@@ -282,6 +278,14 @@ public class RedisBaseImp implements CacheBaseInterface {
 	@Override
 	public void clear() throws AppDaoException {
 		redisTemplate.discard();
+	}
+
+
+
+	@Override
+	public void init(String dbIndex) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

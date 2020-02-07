@@ -49,7 +49,7 @@
 
 
 	<!-- 加载Log4J 配置文件  -->
-	<listener>
+	<!-- <listener>
 		<listener-class>cn.dyaoming.listeners.Log4j2ConfigListener</listener-class>
-	</listener>
+	</listener> -->
 </web-app>

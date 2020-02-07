@@ -21,7 +21,7 @@ public class RegexDemo extends BaseJunit {
 
 	@Test
 	public void demo1() {
-		Collection<String> l =cacheDao.getKeys("cache:businessInfo:*1200*");
+		Collection<String> l =cacheDao.getKeys("cache:businessInfo:*(1200)");
 //		cache:businessInfo:cn.dyaoming.demo.services.DemoService.businessService[1200]
 		l.stream().forEach(p->{
 			System.out.println(p);
