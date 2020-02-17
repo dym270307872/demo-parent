@@ -7,7 +7,7 @@ import cn.dyaoming.cache.interfaces.CacheInterface;
 import cn.dyaoming.cache.jedispool.RedisRegexImp;
 
 
-//@Component("cacheDao")
+@Component("cacheDao")
 @Scope("prototype")
 public class JedisPoolDao extends RedisRegexImp implements CacheInterface{
 
