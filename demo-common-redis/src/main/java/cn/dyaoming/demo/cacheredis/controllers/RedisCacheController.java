@@ -29,4 +29,11 @@ public class RedisCacheController {
     public String businessCache(int max) {
         return redisCache.businessCache(max);
     }
+    
+    
+    @RequestMapping("flushdb")
+    public String flushdb(int max) {
+        redisCache.flushdb(max);
+        return "success";
+    }
 }

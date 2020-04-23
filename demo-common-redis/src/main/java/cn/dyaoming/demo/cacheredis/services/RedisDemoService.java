@@ -1,6 +1,7 @@
 package cn.dyaoming.demo.cacheredis.services;
 
 
+import java.util.Collection;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,34 +9,40 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import cn.dyaoming.cache.interfaces.CacheBaseInterface;
+import cn.dyaoming.cache.interfaces.CacheInterface;
 
 
 @Service
 public class RedisDemoService {
 
     @Autowired
-    private CacheBaseInterface cacheDao;
+    private CacheInterface cacheDao;
 
 
 
-    public String exists(int max) {
+    public String exists(String key) {
 
-        return "键：" + max + "，exists方法验证结果:" + cacheDao.exists(max);
+        return "键：" + key + "，exists方法验证结果:" + cacheDao.exists(key);
     }
 
 
 
-    public String set(int max) {
-        int random = new Random().nextInt(max);
-        cacheDao.setCacheObjectData(max, random);
-        return "键：" + max + "，set随机值：:" + random;
+    public String set(String key) {
+        int random = new Random().nextInt(100);
+        cacheDao.setCacheObjectData(key, random);
+        return "键：" + key + "，set随机值：:" + random;
     }
 
 
 
-    public String get(int max) {
-        Object random = cacheDao.getCacheData(max);
-        return "键：" + max + "，get缓存值：:" + random;
+    public String get(String key) {
+        Object random = cacheDao.getCacheData(key);
+        return "键：" + key + "，get缓存值：:" + random;
     }
 
+    
+    public Collection<String> getKeys(String key) {
+        return cacheDao.getKeys(key);
+    }
+    
 }

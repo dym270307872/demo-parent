@@ -47,5 +47,6 @@
 		<module>demo-common-cache</module>
 		<module>demo-common-redis</module>
 		<module>demo-configuration</module>
+		<module>demo-common-sync</module>
 	</modules>
 </project>
