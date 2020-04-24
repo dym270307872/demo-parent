@@ -10,6 +10,7 @@ public class DemoService {
     @SyncLock
     public void tryLock(String name) {
         System.out.println(name + ":我获取到了锁！");
+        
     }
     
 }
