@@ -14,10 +14,10 @@ import org.springframework.context.annotation.Configuration;
 //@EnableRedisRepositories
 //@EnableCaching
 @ComponentScan(basePackages = "cn.dyaoming")
-public class Applacation {
+public class Application {
 
     
     public static void main(String[] args) {
-        SpringApplication.run(Applacation.class, args);
+        SpringApplication.run(Application.class, args);
       }
 }
