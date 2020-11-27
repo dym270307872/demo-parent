@@ -48,5 +48,7 @@
 		<module>demo-common-redis</module>
 		<module>demo-configuration</module>
 		<module>demo-common-sync</module>
+		<module>demo-web-cors</module>
+		<module>demo-annotation</module>
 	</modules>
 </project>
