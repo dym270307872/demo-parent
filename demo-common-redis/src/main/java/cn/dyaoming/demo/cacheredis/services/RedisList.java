@@ -20,7 +20,7 @@ public class RedisList {
 		String cacheKey = "";
 		List<String> list = new ArrayList<>();
 		
-		jedis.rpush(key, strings)
+//		jedis.rpush(key, strings)
 		
 //      jedis.rpush(cacheKey, list);
 //      jedis.sort(key);
