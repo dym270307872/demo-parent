@@ -17,7 +17,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
-	
+
 
 	<build>
 		<pluginManagement>
@@ -49,6 +49,9 @@
 		<module>demo-configuration</module>
 		<module>demo-common-sync</module>
 		<module>demo-web-cors</module>
+		<module>demo-poi</module>
+		<module>demo-java</module>
+		<module>demo-boot-web</module>
 		<module>demo-annotation</module>
 	</modules>
 </project>

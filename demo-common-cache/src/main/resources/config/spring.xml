@@ -32,7 +32,7 @@
 	</context:component-scan>
 
 	<!-- 导入redis配置 -->
-	<import resource="classpath:spring/spring-redis.xml" />
+	<!--<import resource="classpath:spring/spring-redis.xml" />-->
 
 	<!-- 导入cache配置 -->
 	<import resource="classpath:spring/spring-cache.xml" />
