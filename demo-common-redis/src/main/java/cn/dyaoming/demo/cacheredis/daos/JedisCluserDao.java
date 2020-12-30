@@ -4,11 +4,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import cn.dyaoming.cache.interfaces.CacheInterface;
-import cn.dyaoming.cache.jediscluster.RedisRegexImp;
+import cn.dyaoming.cache.jediscluster.AbstractRedisRegexImp;
 
 
 //@Component("cacheDao")
 @Scope("prototype")
-public class JedisCluserDao extends RedisRegexImp implements CacheInterface{
+public class JedisCluserDao extends AbstractRedisRegexImp implements CacheInterface{
 
 }
