@@ -11,8 +11,8 @@ import cn.dyaoming.utils.StringUtil;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-//@Configuration
-public class JedisConfig extends CachingConfigurerSupport {
+@Configuration
+public class JedisConfig {
     private Logger logger = LoggerFactory.getLogger(JedisConfig.class);
 
     @Value("${spring.redis.host}")

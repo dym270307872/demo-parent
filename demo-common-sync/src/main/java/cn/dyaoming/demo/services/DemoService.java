@@ -1,5 +1,6 @@
 package cn.dyaoming.demo.services;
 
+
 import org.springframework.stereotype.Service;
 
 import cn.dyaoming.sync.annotations.SyncLock;
@@ -10,7 +11,12 @@ public class DemoService {
     @SyncLock
     public void tryLock(String name) {
         System.out.println(name + ":我获取到了锁！");
-        
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     
 }
