@@ -2,8 +2,8 @@ package cn.dyaoming.web.test;
 
 import org.apache.tomcat.util.security.MD5Encoder;
 
+import cn.dyaoming.utils.HashUtil;
 import cn.dyaoming.utils.Md5Util;
-import cn.dyaoming.web.util.HashUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -15,7 +15,7 @@ public class TestPassword {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		String passwordString = securite("QQ270307872dym");
+		String passwordString = securite("myPassword");
 
 		System.out.println(passwordString);
 	}

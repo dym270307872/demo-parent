@@ -14,7 +14,7 @@
 		<dependency>
 			<groupId>cn.dyaoming.common</groupId>
 			<artifactId>common-util</artifactId>
-			<version>0.0.1</version>
+			<version>0.0.6</version>
 		</dependency>
 	</dependencies>
 </project>
