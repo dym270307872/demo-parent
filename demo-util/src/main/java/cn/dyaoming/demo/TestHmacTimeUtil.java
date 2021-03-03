@@ -31,22 +31,23 @@ public class TestHmacTimeUtil {
 		String keyString = "e1487853580b078fefbedd69405f9e8943ace7851b51d16a8e3102ed4157ee30";
 //		System.out.println(message);
 //		System.out.println(keyString);
-		
-		
+
 //		// hash测试
-//		long startTime2 = System.currentTimeMillis();
-////		for (int i = 0; i < 1000; i++) {
-		System.out.println(HashUtil.sha256Encode(message + keyString));
-////		}
-//		long endTime2 = System.currentTimeMillis();
-//		System.out.println("hash:" + (endTime2 - startTime2));
+		long startTime2 = System.currentTimeMillis();
+		String hashMessage = message;
+		for (int i = 0; i < 5; i++) {
+			hashMessage = HashUtil.sha256(hashMessage + keyString);
+		}
+		long endTime2 = System.currentTimeMillis();
+		System.out.println("hash:" + hashMessage + "========>" + (endTime2 - startTime2));
 //		// hmac测试
-//		long startTime = System.currentTimeMillis();
-////				for (int i = 0; i < 1000; i++) {
-		System.out.println(HmacUtil.sha256(message, keyString));
-////				}
-//		long endTime = System.currentTimeMillis();
-//		System.out.println("hmac:" + (endTime - startTime));
+		long startTime = System.currentTimeMillis();
+		String hmacMessage = message;
+		for (int i = 0; i < 5; i++) {
+			hmacMessage = HmacUtil.sha256(hmacMessage, keyString);
+		}
+		long endTime = System.currentTimeMillis();
+		System.out.println("hmac:" + hmacMessage + "=========>" + (endTime - startTime));
 
 	}
 
